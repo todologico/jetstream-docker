@@ -11,7 +11,7 @@ RUN apt update
 RUN apt install -y software-properties-common unzip curl iproute2 iputils-ping nano supervisor htop git
 RUN add-apt-repository -y ppa:ondrej/php
 RUN apt update
-RUN apt install -y php8.2-cli php8.2-fpm php8.2-common php8.2-mysql php8.2-pgsql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-ldap php8.2-xml php8.2-bcmath
+RUN apt install -y php8.3-cli php8.3-fpm php8.3-common php8.3-mysql php8.3-pgsql php8.3-zip php8.3-gd php8.3-mbstring php8.3-curl php8.3-ldap php8.3-xml php8.3-bcmath
 RUN mkdir -p /var/run/php
 
 RUN apt install -y nginx
@@ -19,7 +19,7 @@ RUN cd /etc/nginx/sites-available && rm *
 RUN cd /etc/nginx/sites-enabled && rm *
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-COPY www.conf /etc/php/8.2/fpm/pool.d/
+COPY www.conf /etc/php/8.3/fpm/pool.d/
 COPY nginx.conf /etc/nginx/
 COPY app.conf /etc/nginx/conf.d/
 COPY docker-entrypoint.sh /usr/local/bin/

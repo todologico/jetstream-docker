@@ -1,4 +1,4 @@
-##  - Laravel Jetstream Inertia ​- Docker  
+##  - Laravel Jetstream con Inertia (Vuejs) ​- Docker  
 ### Laravel 11 - Jetstream 5 - MariaDB - Phpmyadmin
 
 **Instalación:**  
