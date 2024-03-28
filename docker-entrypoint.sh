@@ -13,10 +13,10 @@ create_project() {
 
      # Modificar el archivo .env con search y replace al inicializar
     sed -i 's/DB_CONNECTION=.*/DB_CONNECTION=mysql/' /var/www/app/.env
-    sed -i 's/# DB_HOST=.*/DB_HOST=oncelar-db/' /var/www/app/.env
+    sed -i 's/# DB_HOST=.*/DB_HOST=jetlar-db/' /var/www/app/.env
     sed -i 's/# DB_PORT=.*/DB_PORT=3310/' /var/www/app/.env
-    sed -i 's/# DB_DATABASE=.*/DB_DATABASE=oncelar/' /var/www/app/.env
-    sed -i 's/# DB_USERNAME=.*/DB_USERNAME=oncelar/' /var/www/app/.env
+    sed -i 's/# DB_DATABASE=.*/DB_DATABASE=jetlar/' /var/www/app/.env
+    sed -i 's/# DB_USERNAME=.*/DB_USERNAME=jetlar/' /var/www/app/.env
     sed -i 's/# DB_PASSWORD=.*/DB_PASSWORD=00000000/' /var/www/app/.env
     sed -i 's/SESSION_DRIVER=.*/SESSION_DRIVER=file/' /var/www/app/.env
 

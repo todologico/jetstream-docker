@@ -1,21 +1,21 @@
-## Oncelar - Laravel 11 - Docker  
-### Laravel 11 - MariaDB - Phpmyadmin
+##  - Laravel Jetstream Inertia ​- Docker  
+### Laravel 11 - Jetstream 5 - MariaDB - Phpmyadmin
 
 **Instalación:**  
 
 Clonar el repositorio.  
 
-Situados en /oncelar, desde la consola ejecutar el siguiente comando, el cual creara las carpeta "db" (volumen mariadb) y "src" (codigo laravel) y levantará los contenedores de los tres servicios.
+Situados en /jetlar, desde la consola ejecutar el siguiente comando, el cual creara las carpeta "db" (volumen mariadb) y "src" (codigo laravel) y levantará los contenedores de los tres servicios.
 
 **mkdir -p src && mkdir -p db && USER_ID=$(id -u) docker-compose up -d**  
 
 Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
 
 DB_CONNECTION=mysql  
-DB_HOST=oncelar-db  
+DB_HOST=jetlar-db  
 DB_PORT=3310  
-DB_DATABASE=oncelar  
-DB_USERNAME=oncelar  
+DB_DATABASE=jetlar  
+DB_USERNAME=jetlar  
 DB_PASSWORD=00000000  
 
 **COMANDOS CON PHP ARTISAN DENTRO DEL CONTENEDOR**
@@ -33,7 +33,7 @@ RUN usermod -aG www-data $USER_NAME
 
 y para poder correr comandos, se ingresa al contenedor y se cambia de usuario, corriendo:
 
-docker exec -it oncelar bash
+docker exec -it jetlar bash
 
 revisamos todos los usuarios, verificando que el nuestro se encuentra activo:
 
@@ -49,7 +49,7 @@ php artisan
 
 Opcionalmente puede hacerse directamente desde el interior del contenedor:  
 
-docker exec -it oncelar bash  
+docker exec -it jetlar bash  
 adduser your_user  
 usermod -aG www-data your_local_user  
 id nuevo_usuario  
@@ -66,5 +66,5 @@ uid=1000(your_local_user) gid=1000(your_local_user) groups=1000(your_local_user)
 
 
 PRUEBAS DE CONECTIVIDAD DB CON TINKER
-1) docker exec -it oncelar php artisan tinker
+1) docker exec -it jetlar php artisan tinker
 2) use Illuminate\Support\Facades\DB; DB::connection()->getPdo();
