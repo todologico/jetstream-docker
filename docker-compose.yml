@@ -12,17 +12,17 @@ services:
       - USER_ID=${USER_ID:-0}
       - DB_CONNECTION=mysql
       - DB_HOST=jetlar-db
-      - DB_PORT=3310
+      - DB_PORT=3312
       - DB_DATABASE=jetlar
       - DB_USERNAME=jetlar
       - DB_PASSWORD=00000000
     working_dir: /var/www/app
     ports:
-      - '83:80'
+      - '93:80'
     volumes:
       - ./src:/var/www/app
     networks:
-      - netdocker  
+      - jetdocker  
   jetlar-phpmyadmin:
     image: phpmyadmin:latest
     container_name: jetlar-phpmyadmin
@@ -30,13 +30,13 @@ services:
     tty: true
     environment:
       - PMA_HOST=jetlar-db
-      - PMA_PORT=3310
+      - PMA_PORT=3312
       - PMA_USER=jetlar
       - PMA_PASSWORD=00000000
     ports:
-      - '89:80'
+      - '99:80'
     networks:
-      - netdocker
+      - jetdocker
   jetlar-db:
     image: mariadb:latest
     container_name: jetlar-db
@@ -48,13 +48,13 @@ services:
       - MARIADB_USER=jetlar
       - MARIADB_PASSWORD=00000000
       - MARIADB_ROOT_PASSWORD=00000000
-    command: --port=3310 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --port=3312 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - '3310:3310'
+      - '3312:3312'
     volumes:
       - ./db:/var/lib/mysql
     networks:
-      - netdocker
+      - jetdocker
 networks:
-  netdocker:
+  jetdocker:
     driver: bridge
