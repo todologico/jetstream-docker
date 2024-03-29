@@ -9,6 +9,17 @@ Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, e
 
 **mkdir -p src && mkdir -p db && USER_ID=$(id -u) docker-compose up -d**  
 
+Dentro del contenedor con usuario no root:
+
+composer require laravel/jetstream
+
+php artisan jetstream:install inertia
+
+npm install
+npm run build
+php artisan migrate
+
+
 Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
 
 DB_CONNECTION=mysql  
