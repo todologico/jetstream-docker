@@ -18,6 +18,8 @@ RUN apt install -y nginx
 RUN cd /etc/nginx/sites-available && rm *
 RUN cd /etc/nginx/sites-enabled && rm *
 
+RUN apt update && apt install -y nodejs npm
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 COPY www.conf /etc/php/8.2/fpm/pool.d/
 COPY nginx.conf /etc/nginx/
