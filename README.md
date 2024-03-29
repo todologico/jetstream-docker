@@ -11,13 +11,11 @@ Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, e
 
 Dentro del contenedor con usuario no root:
 
-composer require laravel/jetstream
-
-php artisan jetstream:install inertia
-
-npm install
-npm run build
-php artisan migrate
+**composer require laravel/jetstream**
+**php artisan jetstream:install inertia**
+**npm install**
+**npm run build**
+**php artisan migrate**
 
 
 Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
