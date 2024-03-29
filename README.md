@@ -67,13 +67,18 @@ lo que deberia mostrar:
 
 uid=1000(your_local_user) gid=1000(your_local_user) groups=1000(your_local_user),33(www-data)
 
-
-
-
-
 --------------------------------------
-
 
 PRUEBAS DE CONECTIVIDAD DB CON TINKER
 1) docker exec -it jetlar php artisan tinker
 2) use Illuminate\Support\Facades\DB; DB::connection()->getPdo();
+
+Resultado:  
+
+![[https://github.com/todologico/jetstream-docker](https://github.com/todologico/jetstream-docker)](https://raw.githubusercontent.com/todologico/jetstream-docker/main/jetstream.jpg)
+
+
+
+
+
+
