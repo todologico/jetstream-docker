@@ -75,7 +75,7 @@ PRUEBAS DE CONECTIVIDAD DB CON TINKER
 
 Resultado:  
 
-![[https://github.com/todologico/jetstream-docker](https://github.com/todologico/jetstream-docker)](https://raw.githubusercontent.com/todologico/jetstream-docker/main/jetstream.jpg)
+[![Jetstream Docker](https://raw.githubusercontent.com/todologico/jetstream-docker/main/jetstream.jpg)](https://github.com/todologico/jetstream-docker)
 
 
 
