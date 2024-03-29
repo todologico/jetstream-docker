@@ -29,13 +29,13 @@ DB_PASSWORD=00000000
 
 **COMANDOS CON PHP ARTISAN DENTRO DEL CONTENEDOR**
 
-Al construir el contenedor se da de alta un usuario no root (your_user), con el cual es necesario loguearse dentro del mismo.
+Al construir el contenedor se da de alta un usuario no root (appuser), con el cual es necesario loguearse dentro del mismo.
 Este usuario pertenece al grupo www-data, por lo cual puede acceder a realizar comandos artisan.  
 
 Para dar de alta este usuario, en el Dockerfile estoy agregando:
 
 ARG DEBIAN_FRONTEND=noninteractive  
-ARG USER_NAME=your_user  
+ARG USER_NAME=appuser  
 ARG USER_UID=1000  
 RUN useradd -u $USER_UID -ms /bin/bash $USER_NAME  
 RUN usermod -aG www-data $USER_NAME  
@@ -50,7 +50,7 @@ cat /etc/passwd
 
 cambiamos al usuario no root:
 
-su your_user
+su appuser
 
 verificamos que accedemos a artisan:
 
@@ -59,7 +59,7 @@ php artisan
 Opcionalmente puede hacerse directamente desde el interior del contenedor:  
 
 docker exec -it jetlar bash  
-adduser your_user  
+adduser appuser  
 usermod -aG www-data your_local_user  
 id nuevo_usuario  
 
