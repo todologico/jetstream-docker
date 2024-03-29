@@ -1,5 +1,5 @@
-##  - Laravel Jetstream con Inertia (Vuejs) ​- Docker  
-### Laravel 11 - Jetstream 5 - MariaDB - Phpmyadmin
+##  Laravel Jetstream con Inertia (Vuejs) ​- Docker - Listo para instalar 
+### Laravel 11 - Jetstream 5 - MariaDB - phpMyAdmin
 
 **Instalación no productiva:**  
 
@@ -16,7 +16,6 @@ Dentro del contenedor con usuario no root:
 **npm install**  
 **npm run build**  
 **php artisan migrate**    
-
 
 Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
 
@@ -60,12 +59,12 @@ Opcionalmente puede hacerse directamente desde el interior del contenedor:
 
 docker exec -it jetlar bash  
 adduser appuser  
-usermod -aG www-data your_local_user  
+usermod -aG www-data appuser  
 id nuevo_usuario  
 
 lo que deberia mostrar:  
 
-uid=1000(your_local_user) gid=1000(your_local_user) groups=1000(your_local_user),33(www-data)
+uid=1000(appuser) gid=1000(appuser) groups=1000(appuser),33(www-data)
 
 --------------------------------------
 
