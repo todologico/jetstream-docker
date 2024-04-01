@@ -11,7 +11,7 @@ Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, e
 
 **mkdir -p src && mkdir -p db && docker-compose up -d**  
 
-Dentro del contenedor con usuario no root:
+Ingreso al contenedor con usuario no root:
 
 **su appuser**  
 **composer require laravel/jetstream**  
