@@ -13,6 +13,7 @@ Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, e
 
 Dentro del contenedor con usuario no root:
 
+**su appuser**  
 **composer require laravel/jetstream**  
 **php artisan jetstream:install inertia**  
 **npm install**  

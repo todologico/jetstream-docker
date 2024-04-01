@@ -1,9 +1,12 @@
 FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
+
+# user para correr artisan dentro del contenedor
 ARG USER_NAME=appuser
 ARG USER_UID=1000
 RUN useradd -u $USER_UID -ms /bin/bash $USER_NAME
+RUN usermod -aG 1000 $USER_NAME
 RUN usermod -aG www-data $USER_NAME
 
 RUN apt update
@@ -24,10 +27,7 @@ RUN cd /etc/nginx/sites-enabled && rm *
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
 RUN apt update && apt install -y nodejs
 
-# composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-#configuracion
 COPY www.conf /etc/php/8.2/fpm/pool.d/
 COPY nginx.conf /etc/nginx/
 COPY app.conf /etc/nginx/conf.d/
