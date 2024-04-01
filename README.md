@@ -9,7 +9,7 @@ Clonar el repositorio.
 
 Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, el cual creara las carpeta "db" (volumen mariadb) y "src" (codigo laravel) y levantará los contenedores de los tres servicios.
 
-**mkdir -p src && mkdir -p db && USER_ID=$(id -u) docker-compose up -d**  
+**mkdir -p src && mkdir -p db && docker-compose up -d**  
 
 Dentro del contenedor con usuario no root:
 
@@ -18,6 +18,11 @@ Dentro del contenedor con usuario no root:
 **npm install**  
 **npm run build**  
 **php artisan migrate**    
+
+El contenedor de laravel se visualiza en http://localhost:89/  
+
+
+El contenedor de phpmyadmin se visualiza en http://localhost:99/   
 
 Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
 
@@ -43,26 +48,26 @@ RUN usermod -aG www-data $USER_NAME
 
 y para poder correr comandos, se ingresa al contenedor y se cambia de usuario, corriendo:
 
-docker exec -it jetlar bash
+**docker exec -it jetlar bash**  
 
 revisamos todos los usuarios, verificando que el nuestro se encuentra activo:
 
-cat /etc/passwd
+**cat /etc/passwd** 
 
 cambiamos al usuario no root:
 
-su appuser
+**su appuser**  
 
 verificamos que accedemos a artisan:
 
-php artisan
+**php artisan**  
 
 Opcionalmente puede hacerse directamente desde el interior del contenedor:  
 
-docker exec -it jetlar bash  
-adduser appuser  
-usermod -aG www-data appuser  
-id nuevo_usuario  
+**docker exec -it jetlar bash**  
+**adduser appuser**  
+**usermod -aG www-data appuser**  
+**id nuevo_usuario**  
 
 lo que deberia mostrar:  
 
@@ -71,15 +76,17 @@ uid=1000(appuser) gid=1000(appuser) groups=1000(appuser),33(www-data)
 --------------------------------------
 
 PRUEBAS DE CONECTIVIDAD DB CON TINKER
-1) docker exec -it jetlar php artisan tinker
-2) use Illuminate\Support\Facades\DB; DB::connection()->getPdo();
 
-Resultado:  
+**docker exec -it oncelar php artisan tinker**  
+**use Illuminate\Support\Facades\DB; DB::connection()->getPdo();**  
 
-[![Jetstream Docker](https://raw.githubusercontent.com/todologico/jetstream-docker/main/jetstream.jpg)](https://github.com/todologico/jetstream-docker)
+O tambien es posible correr migraciones y hacer rollback, las cuales se muestran mediante phpmyadmin Dentro del contenedor, con usuario no root (appuser), corremos:
 
+**php artisan migrate**  
 
+Y para retroceder:
 
+**php artisan migrate:rollback**  
 
 
 
