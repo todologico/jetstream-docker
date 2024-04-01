@@ -11,7 +11,7 @@ Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, e
 
 **mkdir -p src && mkdir -p db && docker-compose up -d**  
 
-Ingreso al contenedor con usuario no root:
+Ingreso al contenedor con usuario no root (appuser):
 
 **su appuser**  
 **composer require laravel/jetstream**  
@@ -41,11 +41,11 @@ Este usuario pertenece al grupo www-data, por lo cual puede acceder a realizar c
 
 Para dar de alta este usuario, en el Dockerfile estoy agregando:
 
-ARG DEBIAN_FRONTEND=noninteractive  
-ARG USER_NAME=appuser  
-ARG USER_UID=1000  
-RUN useradd -u $USER_UID -ms /bin/bash $USER_NAME  
-RUN usermod -aG www-data $USER_NAME  
+ARG USER_NAME=appuser
+ARG USER_UID=1000
+RUN useradd -u $USER_UID -ms /bin/bash $USER_NAME
+RUN usermod -aG 1000 $USER_NAME
+RUN usermod -aG www-data $USER_NAME
 
 y para poder correr comandos, se ingresa al contenedor y se cambia de usuario, corriendo:
 
