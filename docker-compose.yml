@@ -9,7 +9,6 @@ services:
     restart: unless-stopped
     tty: true
     environment:
-      - USER_ID=${USER_ID:-0}
       - DB_CONNECTION=mysql
       - DB_HOST=jetlar-db
       - DB_PORT=3312

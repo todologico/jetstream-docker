@@ -24,12 +24,8 @@ create_project() {
 
 start_project() {
 
-    if [ ! $(id -u) != 0 ]; then
-
-        chown -R $USER_ID:$USER_ID $APP_PATH
-        chown -R www-data:www-data $APP_PATH/storage
-        chown -R www-data:www-data $APP_PATH/bootstrap
-    fi
+    chown -R www-data:www-data $APP_PATH/storage
+    chown -R www-data:www-data $APP_PATH/bootstrap
 
     /usr/bin/supervisord -c /etc/supervisord.conf
 }
