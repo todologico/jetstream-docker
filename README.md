@@ -29,7 +29,7 @@ Configuracion acceso DB en file .env que se ingresa automaticamente desde el fil
 
 DB_CONNECTION=mysql  
 DB_HOST=jetlar-db  
-DB_PORT=3310  
+DB_PORT=3312  
 DB_DATABASE=jetlar  
 DB_USERNAME=jetlar  
 DB_PASSWORD=00000000  
