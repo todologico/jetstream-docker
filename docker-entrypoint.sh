@@ -9,7 +9,7 @@ create_laravel_project() {
 
     composer create-project laravel/laravel:^11.0 $APP_PATH
 
-    chmod -R 775 $APP_PATH/bootstrap
+    chmod -R 775 $APP_PATH/storage
     chmod -R 775 $APP_PATH/bootstrap
 
      # Modificar el archivo .env con search y replace al inicializar
