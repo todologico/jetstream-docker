@@ -21,20 +21,27 @@ create_laravel_project() {
     sed -i 's/# DB_PASSWORD=.*/DB_PASSWORD=00000000/' $APP_PATH/.env
     sed -i 's/SESSION_DRIVER=.*/SESSION_DRIVER=file/' $APP_PATH/.env
 
-    # permisos
-    chown -R 1000:1000 $APP_PATH #asigno el usuario appuser como owner de la carpeta var/www/app
+}
 
-    # asigno storage y bootstrap al grupo www-data
+#------------------------------------------------------
+# sugunda funcion
+start_laravel_project() {
+
+    chown -R 1000:1000 $APP_PATH
     chown -R www-data:www-data $APP_PATH/storage
     chown -R www-data:www-data $APP_PATH/bootstrap
    
-    #iniciando el demonio Supervisor para controlar php y nginx
     # Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems.
     /usr/bin/supervisord -c /etc/supervisord.conf
-
 }
+#------------------------------------------------------
 
-
-create_laravel_project    
+if [ ! -f /var/www/app/artisan ]; then
+    create_laravel_project
+    sleep 1
+    start_laravel_project
+else
+    start_laravel_project
+fi     
 
 exit 0   
