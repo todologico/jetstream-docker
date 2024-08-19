@@ -1,13 +1,11 @@
 [![Jetstream Docker](https://raw.githubusercontent.com/todologico/jetstream-docker/main/laravel-jet.jpg)](https://github.com/todologico/jetstream-docker)
 
-##  Laravel Jetstream with Inertia (Vuejs) - Docker - Ready to Install  
+##  Laravel Jetstream with Inertia (Vuejs) - Docker - Ready to Install - Todologico 2023 
 ### Laravel 11 - Jetstream 5 - MariaDB - phpMyAdmin
 
 **Non-Production Installation:**  
 
-Clone the repository.  
-
-Once located in the /jetstream-docker directory, run the following command in the console, which will create the "db" (MariaDB volume) and "src" (Laravel code) directories and start the containers for the three services..
+Clone the repository. Once located in the /jetstream-docker directory, run the following command in the console, which will create the "db" (MariaDB volume) and "src" (Laravel code) directories and start the containers for the three services.
 
 **mkdir -p src && mkdir -p db && docker-compose up -d**  
 
