@@ -1,17 +1,17 @@
 [![Jetstream Docker](https://raw.githubusercontent.com/todologico/jetstream-docker/main/laravel-jet.jpg)](https://github.com/todologico/jetstream-docker)
 
-##  Laravel Jetstream con Inertia (Vuejs) ​- Docker - Listo para instalar 
+##  Laravel Jetstream with Inertia (Vuejs) - Docker - Ready to Install  
 ### Laravel 11 - Jetstream 5 - MariaDB - phpMyAdmin
 
-**Instalación no productiva:**  
+**Non-Production Installation:**  
 
-Clonar el repositorio.  
+Clone the repository.  
 
-Situados en /jetstream-docker, desde la consola ejecutar el siguiente comando, el cual creara las carpeta "db" (volumen mariadb) y "src" (codigo laravel) y levantará los contenedores de los tres servicios.
+Once located in the /jetstream-docker directory, run the following command in the console, which will create the "db" (MariaDB volume) and "src" (Laravel code) directories and start the containers for the three services..
 
 **mkdir -p src && mkdir -p db && docker-compose up -d**  
 
-Ingreso al contenedor con usuario no root (appuser):
+Accessing the Container with a Non-Root User (appuser):
 
 **su appuser**  
 **composer require laravel/jetstream**  
@@ -20,12 +20,11 @@ Ingreso al contenedor con usuario no root (appuser):
 **npm run build**  
 **php artisan migrate**    
 
-El contenedor de laravel se visualiza en http://localhost:89/  
+The Laravel container is accessible at http://localhost:89/
 
+The phpMyAdmin container is accessible at http://localhost:99/
 
-El contenedor de phpmyadmin se visualiza en http://localhost:99/   
-
-Configuracion acceso DB en file .env que se ingresa automaticamente desde el file entrypoint 
+Database Access Configuration in the .env File (Automatically Inserted by the Entrypoint File):
 
 DB_CONNECTION=mysql  
 DB_HOST=jetlar-db  
@@ -34,12 +33,11 @@ DB_DATABASE=jetlar
 DB_USERNAME=jetlar  
 DB_PASSWORD=00000000  
 
-**COMANDOS CON PHP ARTISAN DENTRO DEL CONTENEDOR**
+**Commands with PHP Artisan Inside the Container:**
 
-Al construir el contenedor se da de alta un usuario no root (appuser), con el cual es necesario loguearse dentro del mismo.
-Este usuario pertenece al grupo www-data, por lo cual puede acceder a realizar comandos artisan.  
+When building the container, a non-root user (appuser) is created, which you need to log in with inside the container. This user belongs to the www-data group, so it can execute artisan commands.  
 
-Para dar de alta este usuario, en el Dockerfile estoy agregando:
+To create this user, the following is added to the Dockerfile:
 
 ARG USER_NAME=appuser
 ARG USER_UID=1000
@@ -47,45 +45,45 @@ RUN useradd -u $USER_UID -ms /bin/bash $USER_NAME
 RUN usermod -aG 1000 $USER_NAME
 RUN usermod -aG www-data $USER_NAME
 
-y para poder correr comandos, se ingresa al contenedor y se cambia de usuario, corriendo:
+To run commands, access the container and switch to the user by running:
 
 **docker exec -it jetlar bash**  
 
-revisamos todos los usuarios, verificando que el nuestro se encuentra activo:
+Then, list all users to verify that your user is active:
 
 **cat /etc/passwd** 
 
-cambiamos al usuario no root:
+Switch to the non-root user:
 
 **su appuser**  
 
-verificamos que accedemos a artisan:
+Verify that you can access artisan:
 
 **php artisan**  
 
-Opcionalmente puede hacerse directamente desde el interior del contenedor:  
+Alternatively, you can do this directly from inside the container:  
 
 **docker exec -it jetlar bash**  
 **adduser appuser**  
 **usermod -aG www-data appuser**  
 **id nuevo_usuario**  
 
-lo que deberia mostrar:  
+This should display:  
 
 uid=1000(appuser) gid=1000(appuser) groups=1000(appuser),33(www-data)
 
 --------------------------------------
 
-PRUEBAS DE CONECTIVIDAD DB CON TINKER
+DB Connectivity Tests with Tinker
 
 **docker exec -it oncelar php artisan tinker**  
 **use Illuminate\Support\Facades\DB; DB::connection()->getPdo();**  
 
-O tambien es posible correr migraciones y hacer rollback, las cuales se muestran mediante phpmyadmin Dentro del contenedor, con usuario no root (appuser), corremos:
+You can also run migrations and rollbacks, which will be displayed via phpMyAdmin. Inside the container, with the non-root user (appuser), run:
 
 **php artisan migrate**  
 
-Y para retroceder:
+To roll back:
 
 **php artisan migrate:rollback**  
 
